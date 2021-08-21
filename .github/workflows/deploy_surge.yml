@@ -1,0 +1,28 @@
+name: "Expense Tracker App by Abdul Moiz Lakhani"
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Intall Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      
+      - name: Build React App
+        run: sudo yarn build
+
+      - name: Install Surge
+        run: npm install --global surge
+
+      - name: Deploy React App to Surge
+        run: surge ./build expense-tracker-amlakhani.surge.sh --token ${{ secrets.SURGE_TOKEN }}
