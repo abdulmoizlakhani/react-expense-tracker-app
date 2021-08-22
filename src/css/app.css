@@ -1,0 +1,17 @@
+:root {
+  --dark-grey: #adb5bd;
+}
+
+.text-orientation-upright {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.main-heading {
+  color: var(--dark-grey);
+}
+
+.input-label {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
