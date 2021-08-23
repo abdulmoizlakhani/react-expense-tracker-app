@@ -3,6 +3,8 @@ import React from "react";
 // components
 import Header from "./components/Header";
 import AddTransaction from "./components/AddTransaction";
+import IncomeExpense from "./components/IncomeExpense";
+import CurrentBalance from "./components/CurrentBalance";
 
 // css
 import "./css/app.css";
@@ -13,6 +15,8 @@ function App() {
       <Header />
       <div className="mx-3 w-25">
         <AddTransaction />
+        <IncomeExpense />
+        <CurrentBalance />
       </div>
     </div>
   );
