@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 
 // components
@@ -12,8 +12,30 @@ import TransactionHistory from "./components/TransactionHistory";
 import "./css/app.css";
 
 function App() {
+  const [transactions, updateTransactions] = useState([]);
+
+  const addTransaction = (transaction) => {
+    const updatedTransactions = [...transactions, transaction];
+    updateTransactions(updatedTransactions);
+  };
+
+  const deleteTransaction = (transactionIndex) => {
+    const updatedTransactions = [...transactions];
+    updatedTransactions.splice(transactionIndex, 1);
+    updateTransactions(updatedTransactions);
+  };
+
+  const totalIncome = transactions
+    .filter((transaction) => +transaction.transactionAmount > 0)
+    .map((transaction) => +transaction.transactionAmount)
+    .reduce((a, b) => a + b, 0);
+  const totalExpense = transactions
+    .filter((transaction) => +transaction.transactionAmount < 0)
+    .map((transaction) => +transaction.transactionAmount)
+    .reduce((a, b) => a + b, 0);
+
   return (
-    <Row className="vh-100 align-items-center justify-content-center my-4 my-md-0">
+    <Row className="main-container w-100 align-items-center justify-content-center my-4 my-md-0">
       <Col
         xs={10}
         sm={10}
@@ -25,12 +47,12 @@ function App() {
         <Header />
       </Col>
       <Col xs={10} sm={10} md={5} lg={4} xl={4}>
-        <AddTransaction />
-        <IncomeExpense />
-        <CurrentBalance />
+        <AddTransaction addTransaction={addTransaction} />
+        <IncomeExpense totalIncome={totalIncome} totalExpense={totalExpense} />
+        <CurrentBalance totalBalance={totalIncome + totalExpense} />
       </Col>
       <Col xs={10} sm={10} md={4} lg={4} xl={3} className="mt-4 mt-md-0">
-        <TransactionHistory />
+        <TransactionHistory transactions={transactions} deleteTransaction={deleteTransaction} />
       </Col>
     </Row>
   );

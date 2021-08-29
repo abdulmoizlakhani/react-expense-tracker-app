@@ -4,10 +4,12 @@ import React from "react";
 import CardContainer from "./CardContainer";
 import Amount from "./Amount";
 
-export default function CurrentBalance() {
+export default function CurrentBalance(props) {
+  const { totalBalance } = props;
+
   return (
     <CardContainer className="mt-4">
-      <Amount label="Current Balance" amount={0} textType="text-secondary" />
+      <Amount label="Current Balance" amount={totalBalance} textType="text-secondary" />
     </CardContainer>
   );
 }
