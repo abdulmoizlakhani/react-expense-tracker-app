@@ -1,18 +1,21 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 
 // components
 import CardContainer from "./CardContainer";
 
-export default function AddTransaction(props) {
+// Context
+import { TransactionContext } from "../context/TransactionContext";
+
+export default function AddTransaction() {
   const getInitialState = () => ({
     transactionDesc: "",
     transactionAmount: 0,
   });
-  const { addTransaction } = props;
 
   const titleRef = createRef();
   const [formData, updateFormData] = useState(getInitialState());
+  const { addTransaction } = useContext(TransactionContext);
 
   const handleOnChange = (ev) => {
     const { name, value } = ev.target;

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ListGroup, Button } from "react-bootstrap";
 
 // components
 import CardContainer from "./CardContainer";
 import CardHeading from "./CardHeading";
 
-export default function TransactionHistory(props) {
-  const { transactions, deleteTransaction } = props;
+// Context
+import { TransactionContext } from "../context/TransactionContext";
+
+export default function TransactionHistory() {
+  const { transactions, deleteTransaction } = useContext(TransactionContext);
 
   return (
     <CardContainer className="transaction-history-container">

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // components
 import CardContainer from "./CardContainer";
 import Amount from "./Amount";
 
-export default function IncomeExpense(props) {
-  const { totalIncome, totalExpense } = props;
+// Context
+import { TransactionContext } from "../context/TransactionContext";
+
+export default function IncomeExpense() {
+  const { totalIncome, totalExpense } = useContext(TransactionContext);
 
   return (
     <CardContainer className="mt-4 d-flex flex-sm-row">
